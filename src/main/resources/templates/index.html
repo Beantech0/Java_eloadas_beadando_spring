@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Városok Magyarországon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .city-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .intro {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>Magyarországi Városok</h1>
+    <p>Fedezd fel Budapestet és más városokat!</p>
+</header>
+
+<div layout:fragment="content" class="container mt-5">
+    <div class="intro">
+        <p>Üdvözlünk az oldalunkon, ahol bemutatjuk Magyarország legszebb városait.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card city-card">
+                <img src="/images/budapest.png" alt="Budapesti Híd">
+                <div class="card-body">
+                    <h5 class="card-title">Budapest</h5>
+                    <p class="card-text">A magyar főváros, tele történelemmel és csodálatos látnivalókkal.</p>
+                    <a href="#" class="btn btn-primary">Tudj meg többet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debrecen kártya -->
+        <div class="col-md-4 mb-4">
+            <div class="card city-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Debrecen" alt="Debrecen">
+                <div class="card-body">
+                    <h5 class="card-title">Debrecen</h5>
+                    <p class="card-text">Magyarország második legnagyobb városa, híres a kultúrájáról és a Református Nagytemplomról.</p>
+                    <a href="#" class="btn btn-primary">Tudj meg többet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pécs kártya -->
+        <div class="col-md-4 mb-4">
+            <div class="card city-card">
+                <img src="https://via.placeholder.com/300x200.png?text=P%C3%A9cs" alt="Pécs">
+                <div class="card-body">
+                    <h5 class="card-title">Pécs</h5>
+                    <p class="card-text">Pécs, a mediterrán hangulatú város, gazdag történelemmel és művészeti örökséggel.</p>
+                    <a href="#" class="btn btn-primary">Tudj meg többet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

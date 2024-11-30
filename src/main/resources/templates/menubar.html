@@ -1,0 +1,35 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Forgalomkorlátozások</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                <span sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                </span>
+
+                    <span sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/regisztral}">Regisztrál</a>
+                </li>
+                </span>
+
+                    <span sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/kapcsolat}">Kapcsolat</a>
+                </li>
+                </span>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+</div>
