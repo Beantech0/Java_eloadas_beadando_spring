@@ -67,11 +67,8 @@ public class HomeController {
             str+="<td>" + varos_data.isMegyeijogu() + "</td>";
             str+="<td>" + lelekszamRepo.getAveragePopulationPerCity(varos_data.getId()) + "</td>";
             str+="<td>" + lelekszamRepo.getAverageWomenPerCity(varos_data.getId()) + "</td>";
-
             str += "</tr>";
         }
-
-
         return str;
     }
 
