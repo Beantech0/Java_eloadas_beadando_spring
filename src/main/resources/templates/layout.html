@@ -23,6 +23,14 @@
             text-align: center;
             margin-top: 20px;
         }
+        .registration-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -37,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/index.html}">Főoldal</a>
+                        <a class="nav-link" th:href="@{/index}">Főoldal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/kapcsolat}">Kapcsolat</a>
@@ -49,7 +57,7 @@
                             <a class="nav-link" th:href="@{/varosok}">Városok</a>
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a class="nav-link" th:href="@{/korlatozasok}">Kapcsolati üzenetek</a>
+                            <a class="nav-link" th:href="@{/admin/uzenetek}">Kapcsolati üzenetek</a>
                         </li>
                 </ul>
                 <ul class="navbar-nav">

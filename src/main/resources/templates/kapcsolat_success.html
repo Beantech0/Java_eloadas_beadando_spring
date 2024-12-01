@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    </style>
+</head>
+<body>
+<br>
+<div layout:fragment="content">
+<h1>Üzenet elküldve!</h1>
+<p th:text="'Tartalom: ' + ${attr2.szoveg}" />
+<a href="/kapcsolat">Küldjön új üzenetet</a>
+    </div>
+
+
+</body>
+</html>

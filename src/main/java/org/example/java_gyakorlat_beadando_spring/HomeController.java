@@ -8,13 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
+    @Autowired
+    private MessagesRepo messagesRepo;
+
     @GetMapping("/")
     public String home() {
+        return "index";
+    }
+    @GetMapping("/index")
+    public String index() {
         return "index";
     }
     @Autowired private VarosRepo varosRepo;
@@ -70,6 +78,54 @@ public class HomeController {
             str += "</tr>";
         }
         return str;
+    }
+
+    @GetMapping("/admin/uzenetek")
+    public String AdminUzenetek(Model model) {
+        String str = kapcsolatUzenet();
+        model.addAttribute("str", str);
+        return "kapcsolat_uzenetek";
+    }
+    String kapcsolatUzenet(){
+        String str="";
+
+        for(Messages egyediUzenet: messagesRepo.findAll()){
+            str+="<tr>";
+
+            str+="<td>" + egyediUzenet.getFelhasznalo() + "</td>";
+            str+="<td>" + egyediUzenet.getDatum() + "</td>";
+            str+="<td>" + egyediUzenet.getSzoveg() + "</td>";
+
+            str+="</tr>";
+        }
+        return str;
+    }
+    @GetMapping("/kapcsolat")
+    public String urlapForm(Model model) { // Model model: Dependency injection
+        model.addAttribute("attr1", new Messages());
+        return "kapcsolat";
+    }
+
+    @PostMapping("/kapcsolat_success")
+    // UzenetOsztaly uzenetOsztaly és Model model: Dependency injection
+    public String urlapSubmit(@ModelAttribute Messages messageClass, Model model) {
+
+        model.addAttribute("attr2", messageClass);
+
+        LocalDateTime now = LocalDateTime.now();
+        messageClass.setDatum(now);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+
+        messageClass.setFelhasznalo(userName == "anonymousUser" ? "Vendég" : userName);
+
+
+        if(!messageClass.getSzoveg().isEmpty())
+        {
+            messagesRepo.save(messageClass);
+        }
+
+        return "kapcsolat_success";
     }
 
 }
