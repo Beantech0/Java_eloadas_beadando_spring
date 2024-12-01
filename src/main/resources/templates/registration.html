@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <style>
+        .registration-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="registration-container">
+            <h2>Regisztráció</h2>
+            <form action="#" th:action="@{/registration_validation}" th:object="${reg}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Név</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Adja meg a nevét" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" th:field="*{email}" class="form-label">E-mail cím</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adja meg az e-mail címét" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" th:field="*{password}" class="form-label">Jelszó</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Adja meg a jelszavát" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Regisztráció</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
