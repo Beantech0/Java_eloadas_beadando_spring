@@ -30,7 +30,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**","/resources/**", "/registration_validation", "/index", "/kapcsolat", "kapcsolat_success").permitAll()
+                        .requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**","/resources/**", "/registration_validation", "/index", "/kapcsolat", "kapcsolat_success", "/api/**").permitAll()
                         .requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**","/resources/**", "/registration_validation").authenticated()// Engedélyezett nyilvános oldala
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/resources/**", "/","/home", "/varosok", "/index").authenticated()

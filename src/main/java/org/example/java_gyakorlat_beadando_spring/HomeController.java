@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -65,7 +64,6 @@ public class HomeController {
     }
 
     String VarosokData(){
-//        List<Object[]> AveragePopulationPerCity = lelekszamRepo.getAveragePopulationPerCity();
         String str="";
         for(Varos varos_data: varosRepo.findAll()){
             str+="<tr>";
@@ -124,10 +122,50 @@ public class HomeController {
         {
             messagesRepo.save(messageClass);
         }
-
         return "kapcsolat_success";
     }
+}
+@RestController
+class VarosokRestController {
+    VarosRepo repo;
+    VarosokRestController(VarosRepo repo) { // Dependency injection
+        this.repo = repo;
+    }
 
+    @GetMapping("/api/varos")
+    Iterable<Varos> readAll() {
+        return repo.findAll();
+    }
+
+    @GetMapping("/api/varos/{id}")
+    Varos VarosById(@PathVariable int id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new VarosNotFound(id));
+    }
+
+    @PostMapping("/api/ujvaros")
+    Varos varosFeltolt(@RequestBody Varos ujVaros) {
+        return repo.save(ujVaros);
+    }
+    @PutMapping("/api/modositvaros/{id}")
+    Varos varosModosit(@RequestBody Varos adat, @PathVariable int id) {
+        return repo.findById(id)
+                .map(a -> {
+                    a.setMegyeid(adat.getMegyeid());
+                    a.setNev(adat.getNev());
+                    a.setMegyeijogu(adat.isMegyeijogu());
+                    a.setMegyeszekhely(adat.isMegyeszekhely());
+                    return repo.save(a);
+                })
+                .orElseGet(() -> {
+                    adat.setId(id);
+                    return repo.save(adat);
+                });
+    }
+    @DeleteMapping("/api/varostorol/{id}")
+    void varosTorol(@PathVariable int id) {
+        repo.deleteById(id);
+    }
 }
 
 

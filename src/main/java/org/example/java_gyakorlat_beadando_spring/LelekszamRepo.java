@@ -14,5 +14,4 @@ public interface LelekszamRepo extends CrudRepository<Lelekszam, Integer> {
 
     @Query("SELECT AVG(l.no) FROM Lelekszam l WHERE l.varosid = :varosid GROUP BY l.varosid")
     String getAverageWomenPerCity(@Param("varosid") int varosid);
-
 }
