@@ -9,5 +9,4 @@ public class JavaGyakorlatBeadandoSpringApplication {
     public static void main(String[] args) {
         SpringApplication.run(JavaGyakorlatBeadandoSpringApplication.class, args);
     }
-
 }
